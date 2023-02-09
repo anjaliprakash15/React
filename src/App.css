@@ -29,11 +29,11 @@ address{
     color:#0f0f0f;
 }
 
-/*.navbar {
+.navbar {
     margin : 0px auto;
     background-color: #512DA8;
     color:floralwhite;
-}*/
+}
 .navbar-dark {
     background-color: #512DA8;
 }
