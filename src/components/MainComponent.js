@@ -69,7 +69,7 @@ class Main extends Component{
         <Routes>
           <Route exact path='/home' element={<HomePage/>} />
           <Route exact path='/menu' element={<Menu dishes={this.props.dishes} /> }/>
-          <Route path='/menu/:dishId' element={<DishDetail dishes ={this.props.dishes} comments={this.state.comments}/>} />
+          <Route path='/menu/:dishId' element={<DishDetail dishes ={this.props.dishes} comments={this.props.comments}/>} />
           <Route exact path='/contactus' element={<Contact/>} />
           <Route exact path='/aboutus' element={<About leaders = {this.props.leaders} /> } />
           <Route path="*" element = {<Navigate to ="/home" />} />
