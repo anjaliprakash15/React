@@ -8,6 +8,7 @@ import Header from './HeaderComponent.js';
 import Footer from './FooterComponent.js';
 import { Routes, Route, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { addComment } from '../redux/ActionCreators';
 
 const withRouter = (Component) => {
     function ComponentWithRouterProp(props) {
@@ -33,6 +34,10 @@ const mapStateToProps = state => {
     leaders: state.leaders
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment))
+})
 
 class Main extends Component{
   constructor(props) {
@@ -60,6 +65,7 @@ class Main extends Component{
           <DishDetail 
                 dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
                 comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
+                addComment={this.props.addComment}
           />
       );
     };
@@ -69,7 +75,7 @@ class Main extends Component{
         <Routes>
           <Route exact path='/home' element={<HomePage/>} />
           <Route exact path='/menu' element={<Menu dishes={this.props.dishes} /> }/>
-          <Route path='/menu/:dishId' element={<DishDetail dishes ={this.props.dishes} comments={this.props.comments}/>} />
+          <Route path='/menu/:dishId' element={<DishDetail dishes ={this.props.dishes} addComment={this.props.addComment} comments={this.props.comments}/>} />
           <Route exact path='/contactus' element={<Contact/>} />
           <Route exact path='/aboutus' element={<About leaders = {this.props.leaders} /> } />
           <Route path="*" element = {<Navigate to ="/home" />} />
@@ -82,4 +88,4 @@ class Main extends Component{
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
