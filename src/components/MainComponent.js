@@ -9,6 +9,7 @@ import Header from './HeaderComponent';
 import Home from './HomeComponent';
 import Menu from './MenuComponent';
 import { addComment,fetchDishes } from '../redux/ActionCreators';
+import { actions } from 'react-redux-form';
 
 // Creating a WithRouter with new functions as it is not supported in latest React Router Dom
 const withRouter = (Component) => {
@@ -29,7 +30,8 @@ const withRouter = (Component) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
-  fetchDishes: () => {dispatch(fetchDishes())}
+  fetchDishes: () => {dispatch(fetchDishes())},
+  resetFeedbackForm : () => {dispatch(actions.reset('feedback'))}
 })
 
 const mapStateToProps = (state) => {
@@ -73,7 +75,7 @@ class Main extends Component{
                                                                  comments={this.props.comments}
                                                                  dishesLoading = {this.props.dishes.isLoading}
                                                                  dishesErrMess = {this.props.dishes.errMess} /> } />
-                <Route exact path='/contactus' element={ <Contact/> } />
+                <Route exact path='/contactus' element={ <Contact resetFeedbackForm = {this.props.resetFeedbackForm}/> } />
             </Routes>
             <Footer/>
             </div>

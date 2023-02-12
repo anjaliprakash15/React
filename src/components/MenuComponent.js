@@ -29,19 +29,19 @@ import { Loading } from './LoadingComponent';
                 </div>
             );
         }
-        else if (props.dishes.errMess) {
+        else if (props.dishesErrMess) {
             return(
                 <div className="container">
                     <div className="row"> 
                         <div className="col-12">
-                            <h4>{props.dishes.errMess}</h4>
+                            <h4>{props.dishesErrMess}</h4>
                         </div>
                     </div>
                 </div>
             );
         }
         else{
-          const menu = props.dishes.dishes.map((dish) => {
+          const menu = props.dishes.map((dish) => {
             return (
               <div key={dish.id} className="col-12 col-md-5 m-1">
                   <RenderMenuItem dish = {dish} onClick={props.onClick} />
