@@ -1,10 +1,12 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+
 
 function RenderLeader({leaders}) {
     return leaders.map((leader) => {
-       return(
+       return (
 
             <div key={leader.id} className="mt-5">
                 <div tag="li" className="row">
