@@ -8,7 +8,7 @@ import Footer from './FooterComponent';
 import Header from './HeaderComponent';
 import Home from './HomeComponent';
 import Menu from './MenuComponent';
-import { addComment,fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
 // Creating a WithRouter with new functions as it is not supported in latest React Router Dom
@@ -29,7 +29,7 @@ const withRouter = (Component) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+  postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
   fetchDishes: () => {dispatch(fetchDishes())},
   resetFeedbackForm : () => {dispatch(actions.reset('feedback'))},
   fetchComments: () => dispatch(fetchComments()),
@@ -79,7 +79,7 @@ class Main extends Component{
                 <Route exact path='/aboutus' element={ <About leaders={this.props.leaders} /> } />
 
                 <Route path='/menu/:dishId' element={ <DishDetail dishes ={this.props.dishes.dishes} 
-                                                                 addComment={this.props.addComment}  
+                                                                 postComment={this.props.postComment} 
                                                                  comments={this.props.comments.comments}
                                                                  commentsErrMess = {this.props.comments.errMess}
                                                                  dishesLoading = {this.props.dishes.isLoading}
